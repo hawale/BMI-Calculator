@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BMI calculator</title>
+    <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/128/3604/3604236.png">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;1,400&display=swap" rel="stylesheet" />
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        font-family: "Roboto", sans-serif;
+        box-sizing: border-box;
+      }
+      body{
+        background-image: linear-gradient(to right bottom, #f68fdb, #c5b4ff, #90d4ff, #83ebff, #a8fbf8);
+      }
+      .card{
+        background-image: linear-gradient(to left top, #eaf8fb, #e2f3fd, #e1ecff, #e6e4fd, #f1daf4);
+      }
+      .modal-content{
+        background-image: linear-gradient(to right, #ffe4f4, #f0eaff, #d7f2ff, #c3fbff, #c5fff2);
+      }
+      .card-header h2{
+          text-shadow: #B2F2FF 2px 2px 2px;
+          color: #3415d1;
+          font-family: 'Lobster', cursive;
+      }
+      .progress{
+          height: 20px;
+      }
+      p{
+          font-size: small;
+           font-style: italic;
+      }
+      dl{
+          font-size: 13px;
+      }
+      dt{
+          margin-right: 5px;
+      }
+      ul{
+          font-size: 15px;
+      }
+    </style>
+  </head>
+  <body>
+
+    <!-- Containr one -->
+
+    <div class="container d-flex justify-content-center m-5">
+      <div class="card w-50 shadow">
+        <div class="card-header text-center">
+          <h2>BMI Calculator</h2>
+        </div>
+        <div class="card-body">
+          <div class="nav nav-tabs">
+            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#imperial">Imperial</button>
+            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#metric">Metric</button>
+          </div>
+
+           <!-- Tab content -->
+          <div class="tab-content">
+             <div class="m-2">
+                <label for="Name" class="form-label d-flex flex-row align-items-sm-baseline">Name <p> &nbsp;(Name is not Mandatory)</p></label>
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control border-end-0" id="userID" placeholder="Ex: John" />
+                </div>
+                <label for="Age" class="form-label d-flex flex-row align-items-sm-baseline">Age <p> &nbsp;(above 1 year)</p></label>
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control border-end-0" id="ageInputmetric" placeholder="Ex: 24" />
+                  <span class="input-group-text bg-light border-start-0">Years</span>
+                </div>
+             </div>
+
+             <!-- Imperial -->
+            <div class="tab-pane show active" id="imperial">
+              <form class="m-2" onsubmit="return false" id="formID">
+                <label for="Age" class="form-label">Height</label>
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control border-end-0" id="heightInputft"  placeholder="Ex: 05"/>
+                  <span class="input-group-text bg-light border-start-0">ft</span>
+                  <input type="text" class="form-control border-end-0" id="heightInputin"  placeholder="Ex: 11"/>
+                  <span class="input-group-text bg-light border-start-0">in</span>
+                </div>
+                <label for="Age" class="label">Weight</label>
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control border-end-0" id="weightInput"  placeholder="Ex: 167.55"/>
+                  <span class="input-group-text bg-light border-start-0">lbs</span>
+                </div>
+              </form>
+            </div>
+
+            <!-- metric -->
+            <div class="tab-pane" id="metric">
+              <form class="m-2" onsubmit="return false" id="formID2">
+                <label for="Age" class="form-label">Height</label>
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control border-end-0" id="heightInputftmetric"  placeholder="Ex: 176"/>
+                  <span class="input-group-text bg-light border-start-0">cm</span>
+                </div>
+                <label for="Age" class="label">Weight</label>
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control border-end-0" id="weightInputmetric"  placeholder="Ex: 76"/>
+                  <span class="input-group-text bg-light border-start-0">kg</span>
+                </div>
+                </form>
+              </div>
+                          
+                           <!-- Gender Radio Input -->
+
+                    <div class="mb-4 d-flex flex-row">
+                       <div class="me-2 ms-2">
+                        <input type="radio" class="btn-check" name="options-outlined" id="success-outlined" autocomplete="off" checked>
+                        <label class="btn btn-outline-primary primary" for="success-outlined"><i class="bi bi-gender-female">Female</i></label>
+                       </div>
+                        
+                         <div class="ms-2">
+                            <input type="radio" class="btn-check" name="options-outlined" id="danger-outlined" autocomplete="off">
+                            <label class="btn btn-outline-danger" for="danger-outlined"><i class="bi bi-gender-male">Male</i></label>
+                         </div>
+                     </div>
+
+              <!-- Calculator Button -->
+              <!-- Button trigger modal -->
+
+             <div class="d-flex flex-row">
+                <button type="submit" class="btn btn-warning ms-2 mt-4 h-75 w-50 h5" data-bs-toggle="modal" data-bs-target="#healthReport" onClick="calculateBmi()">Calculate</button>
+                <button type="reset" class="btn btn-info ms-3 mt-4 h-75 w-50 h5" onClick="document.location.reload(true)"> Reset</button>
+             </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+
+  
+  <!-- Modal -->
+  <div class="modal fade" id="healthReport" tabindex="-1"  aria-hidden="true">
+    <div class="modal-dialog p-3">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Health Report Card</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="d-flex flex-row justify-content-between">
+
+                <!-- User Info -->
+
+                <dl class="d-flex flex-row justify-content-evenly">
+                    <dd>Name : &nbsp;</dd>
+                    <dt id="userName">XYZ</dt>
+                    <dd>Age :&nbsp; </dd>
+                    <dt id="userAge"> 00</dt>
+                    <dd>Gende :&nbsp; </dd>
+                    <dt id="gender"> Gender</dt>
+                  </dl>
+                  <dl class="d-flex flex-row justify-content-evenly">
+                      <dd >Date :&nbsp;</dd>
+                      <dt id="dateId">21 September 2021</dt>
+                  </dl>
+            </div>
+            <div> <h1 id="bmi" class="fw-bold">24</h1> <h6 id="bmilevel">Normal BMI</h6><p id="wCtgry">Healthy weight for the height: 57.3 kg - 77.1 kg</p> </div>
+        </div>
+
+
+         <!-- //progress-bar -->
+        <div class="progress m-4">
+            <div class="progress-bar bg-secondary" role="progressbar" style="width: 25%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100" id="ubar">UnderWeight</div>
+            <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"id="ubar1">Normal</div>
+            <div class="progress-bar bg-warning" role="progressbar" style="width: 25%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" id="ubar2">Overweight</div>
+            <div class="progress-bar bg-danger" role="progressbar" style="width: 25%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" id="ubar3">Obese</div>
+
+        </div>
+
+
+        <!-- Accordion  -->
+        <div>
+            <div class="accordion p-1" id="accordionPanelsStayOpenExample">
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                        Continue with your healthy lifestyle
+                    </button>
+                  </h2>
+                  <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+                    <div class="accordion-body">
+                        <ul>
+                           <li>Healthy eating</li>
+                               <ul>
+                                <li>Choose a variety of <a href="https://www.bing.com/search?q=nutrient+rich+foods">nutrient rich foods</a></li>
+                                <li>Include healthy fruits and vegetables,whole grains in your diet</li>
+                                <li>Include small amounts of energy-dense foods such as Olive Oil, nuts and dried fruits</li>
+                               </ul>
+                        </ul>
+
+                    </div>
+                    <div>
+                        <ul>
+                            <li>Exercise</li>
+                             <ul>
+                                <li> Aim for 30-60 minutes of moderately intense activity daily</li>
+                                    <li>This should include a mixture of cardio and strength training exercises</li>
+                             </ul>
+                        </ul>
+                        <p class="p-2">It is also important for you to check your Ideal Weight and Body Fat as BMI alone does not help you assess your overall health risks.</p>
+                    </div>
+                  </div>
+                </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" onclick="print()">Print</button>
+        </div>
+    </div>
+</div>
+</div>
+
+
+<!-- Java Script -->
+
+
+
+<script>
+    
+    
+    //   BMI calculation Function
+    
+    function calculateBmi(){
+        
+        
+        //   input values
+        var userID = document.getElementById("userID").value;
+        var ageInput = document.getElementById("ageInputmetric").value;
+        var heightInputft = document.getElementById("heightInputft").value;
+        var heightInputin = document.getElementById("heightInputin").value;
+        var weightInput = document.getElementById("weightInput").value;
+        var femaleId = document.getElementById("success-outlined");
+        var maleId = document.getElementById("danger-outlined");
+        var weightInputmetric = document.getElementById("weightInputmetric").value;
+        var heightInputftmetric = document.getElementById("heightInputftmetric").value;
+        
+        //   Unit Conversion
+        var heightInputftmetric = heightInputftmetric/100;
+        var heightInputft = heightInputft*12;
+        var newftHt = parseInt(heightInputft) + parseInt(heightInputin);
+        
+        
+        //   user profile
+
+             document.getElementById("userName").innerHTML= userID.toUpperCase();
+             document.getElementById("userAge").innerHTML= ageInput;
+
+             
+
+             if(femaleId.checked){
+                 document.getElementById("gender").innerHTML ="Female";
+                 femaleId = true ;
+                }else{
+                 document.getElementById("gender").innerHTML ="Male";
+
+             }
+
+
+
+                        //  BMI value formula
+ 
+                       if(heightInputft == ""){
+
+                        var bmindex = weightInputmetric /(Math.pow(heightInputftmetric,2));
+                        bmindex = Math.round(bmindex);
+                        var heightInputft = ""; 
+                        document.getElementById("bmi").innerHTML =bmindex;
+                        console.log(bmindex);
+                        }else{
+                        var bmindex =  (weightInput/(Math.pow(newftHt,2)))*703;
+                        bmindex = Math.round(bmindex);
+                        document.getElementById("bmi").innerHTML =bmindex;
+
+                        var heightInputft = ""; 
+
+                         
+                          }
+
+
+
+                //   Condition & Progressbar Update
+   
+                          if(bmindex > 35){
+                           document.getElementById("bmilevel").innerHTML="Extremely Obese BMI";
+                           document.getElementById("ubar3").innerHTML=`<i class="bi bi-bookmark-check">Obese weight</i>`;
+                           document.getElementById("ubar2").innerHTML="Overweight";
+                           document.getElementById("ubar1").innerHTML="Normal";
+                           document.getElementById("ubar").innerHTML="Underweight";
+                           }else if(bmindex <34.9 && bmindex > 30 ){
+                            document.getElementById("bmilevel").innerHTML="Obese BMI";
+                            document.getElementById("ubar3").innerHTML=`<i class="bi bi-bookmark-check">Obese weight</i>`;
+                            document.getElementById("ubar2").innerHTML="Overweight";
+                           document.getElementById("ubar1").innerHTML="Normal";
+                           document.getElementById("ubar").innerHTML="Underweight";
+                           }else if(bmindex < 29.9 && bmindex > 26 ){
+                            document.getElementById("bmilevel").innerHTML="Overweight BMI";
+                            document.getElementById("ubar2").innerHTML=`<i class="bi bi-bookmark-check">Overweight weight</i>`;
+                            document.getElementById("ubar3").innerHTML="Obese";
+                           document.getElementById("ubar1").innerHTML="Normal";
+                           document.getElementById("ubar").innerHTML="Underweight";
+                           } else if(bmindex < 25.9 && bmindex > 19 ){
+                           document.getElementById("bmilevel").innerHTML="Normal BMI";
+                           document.getElementById("ubar1").innerHTML=`<i class="bi bi-award">Normal weight</i>`;
+                           document.getElementById("ubar3").innerHTML="Obese";
+                           document.getElementById("ubar2").innerHTML="Overweight";
+                           document.getElementById("ubar").innerHTML="Underweight";
+                             }else if(bmindex < 18){
+                            document.getElementById("bmilevel").innerHTML="Underweight BMI";
+                            document.getElementById("ubar").innerHTML=`<i class="bi bi-bookmark-check">Underweight weigh</i>`;
+                            document.getElementById("ubar3").innerHTML="Obese";
+                           document.getElementById("ubar2").innerHTML="Overweight";
+                           document.getElementById("ubar1").innerHTML="Normal";
+                             }
+
+                
+                                
+
+
+
+                            //  Date
+                            var nowdate = new Date();
+
+                              var months = ["January", "February ", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+                               document.getElementById("dateId").innerHTML = `${nowdate.getDate()} ${months[nowdate.getMonth()]} ${nowdate.getFullYear()}`;
+ 
+
+
+
+                    }
+
+
+
+
+
+
+
+
+        //Reload function
+
+        function reload(){
+            window.reload();
+        }
+
+
+
+
+              </script>
+
+
+
+
+
+  
+
+
+
+
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
